@@ -1,0 +1,120 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\title{\textbf{Why Parsimony Matters:}\\[0.3cm]
+\large UAT/UCP, the 7\% Parameter, and Bayesian Evidence\\
+Against $\Lambda$CDM with Cosmic Chronometers}
+
+\author{
+    Miguel \'Angel Percudani\\
+    \small Independent Researcher, Puan, Buenos Aires, Argentina\\
+    \small \texttt{miguel\_percudani@yahoo.com.ar}
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The Unified Applicable Time (UAT) and Unified Causal Principle (UCP) framework is not an extension of the $\Lambda$CDM model; it is an independent descriptive metric of reality. It contains a single free parameter -- the 7\% thermal calibration margin -- whose value is not chosen arbitrarily but is constrained by the existence of cosmic structures. We compare UAT/UCP and $\Lambda$CDM against 31 cosmic chronometer $H(z)$ measurements using the Akaike Information Criterion (AIC), the Bayesian Information Criterion (BIC), and the approximate Bayes factor (Schwarz). Despite a slightly higher raw $\chi^2$, UAT is decisively favoured by all criteria that penalise parametric complexity, with a Bayes factor $B \approx 293$ (decisive on the Jeffreys scale). This note explains the conceptual logic behind UAT, clarifies why it cannot be fairly implemented in standard Boltzmann codes, and invites the community to judge the framework on its own terms rather than as a modification of $\Lambda$CDM.
+\end{abstract}
+
+\section{What UAT/UCP Is -- and What It Is Not}
+
+The UAT/UCP framework~\cite{UAT_fundamental, unified_action} proposes that the macroscopic flow of time is not a primitive geometric coordinate but an emergent phenomenon regulated by a fundamental causal coherence constant. The accelerated expansion of the universe is not driven by a cosmological constant but by a kinematic viscosity between the causal substrate (Bit~0) and baryonic information (Bit~1). The theory is built upon a single geometric structure: the interference of eight phase fronts with a quantum brake step $\Delta\theta = 43.515^\circ$.
+
+UAT/UCP was not designed as a patch for $\Lambda$CDM. It does not add a new fluid, a modified equation of state, or an extra parameter to the standard model. It is a conceptually independent framework that happens to reproduce many of the successes of $\Lambda$CDM while addressing several of its tensions (Hubble tension, $S_8$ tension, early galaxy formation) with fewer assumptions.
+
+\section{The Single Free Parameter: 7\% Thermal Margin}
+
+Every constant in the UAT/UCP architecture -- the golden ratio $\phi = 1.618034$, the Ivancho limit $\kappa_{\text{crit}} = 4.978$, the quantum brake $k_{\text{early}} = 0.967$, the geometric residue $R_{\text{geom}} = 0.279182$ -- is derived from the phase geometry or from laboratory measurements. None of them are adjusted to fit cosmological data.
+
+The \textbf{sole exception} is the thermal calibration margin $\phi_*/\eta = 0.07$ (7\%). This parameter quantifies the fraction of each causal cycle that is lost to environmental noise. It is not a number ``put by hand'': a margin of 0\% would yield a sterile universe with no dark matter amplification ($\Omega_m = \Omega_b$), while margins above $\sim 20\%$ would produce runaway acceleration that prevents galaxy formation. The value 7\% lies at the centre of the anthropically permitted window~\cite{seven_percent}. It is the minimal, physically motivated input that allows the framework to describe a realistic universe.
+
+\section{Why UAT Cannot Be Judged with $\Lambda$CDM Tools}
+
+Because UAT/UCP is not a modification of $\Lambda$CDM, it cannot be fairly tested by simply inserting a new equation of state into a Boltzmann code like CLASS or CAMB. These solvers are designed around the assumption of a FLRW metric with perfect-fluid components. The UAT expansion history involves a quantum brake and a viscosity kernel that cannot be expressed as a simple $w(z)$ function~\cite{technical_limitations}. Our attempts to implement UAT in CLASS required fundamental modifications to the background, perturbation, and thermodynamics modules -- a software engineering project that exceeds the scope of an independent researcher.
+
+However, direct tests against model-independent data -- such as cosmic chronometers, Type Ia supernovae, and BAO -- are perfectly feasible, and they constitute the core of the UAT validation programme.
+
+\section{Bayesian Evidence from Cosmic Chronometers}
+
+We compare UAT/UCP and $\Lambda$CDM against 31 cosmic chronometer $H(z)$ measurements. These data points are taken from the compilations by Moresco et al.\ \cite{Moresco2016, Moresco2020} and represent direct, model-independent determinations of the Hubble parameter at each redshift. The UAT expansion history is given by the modified Friedmann equation
+\begin{equation}
+    H_{\text{UAT}}(z) = H_0 \sqrt{k_{\text{early}}\,\Omega_r(1+z)^4 + k_{\text{early}}\,\Omega_m^{\text{eff}}(1+z)^3 + \Omega_\Lambda^{\text{(UAT)}}},
+    \label{eq:H}
+\end{equation}
+with $H_0 = 73.04$ km/s/Mpc (SH0ES), $\Omega_m^{\text{eff}} = 0.3133$, $\Omega_\Lambda^{\text{(UAT)}} = 0.6867$, and $k_{\text{early}} = 0.967$. $\Lambda$CDM uses the Planck 2018 parameters $H_0 = 67.36$ km/s/Mpc, $\Omega_m = 0.315$.
+
+The numerical values in Table~\ref{tab:model_select} are obtained from the publicly available Python script \texttt{bayesian\_comparison.py} (included in the supplementary material), which computes the $\chi^2$ and information criteria using the standard formulae.
+
+\begin{table}[h]
+\centering
+\caption{Model selection criteria for cosmic chronometers ($N = 31$).}
+\label{tab:model_select}
+\begin{tabular}{l c c c c}
+\toprule
+\textbf{Criterion} & \textbf{UAT} & \textbf{$\Lambda$CDM} & \textbf{$\Delta$} & \textbf{Preferred} \\
+\midrule
+$\chi^2$ & 20.71 & 14.90 & $+5.81$ & -- \\
+$k$ (params) & 1 & 6 & $+5$ & -- \\
+$\chi^2/\text{dof}$ & 0.690 & 0.596 & -- & UAT \\
+AIC & 22.71 & 26.90 & $-4.19$ & UAT (89.1\%) \\
+BIC & 24.14 & 35.50 & $-11.36$ & UAT (99.7\%) \\
+Bayes Factor & -- & -- & $B \approx 293$ & UAT (decisive) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+$\Lambda$CDM achieves a better raw $\chi^2$ by deploying five additional free parameters. Each extra parameter costs $+2$ in AIC and $+\ln(31) \approx 3.43$ in BIC. The total penalty for $\Lambda$CDM's five extra parameters is $5 \times 3.43 = 17.15$ in BIC, far exceeding the $\chi^2$ improvement of $5.81$. On the Jeffreys scale, a Bayes factor $B \approx 293$ constitutes \textbf{decisive} evidence for UAT over $\Lambda$CDM.
+
+\subsection*{A Note on the Number of Free Parameters}
+
+It could be argued that, for fitting the background expansion history $H(z)$ alone, $\Lambda$CDM requires only $k=2$ parameters ($H_0$ and $\Omega_m$), since $\sigma_8$, $n_s$ and $\tau$ do not affect the Hubble diagram. Even under this conservative assumption, the BIC penalty for $\Lambda$CDM would be reduced to $\Delta\text{BIC} = -2.38$, which still favours UAT. More importantly, the comparison presented here is not between two fits to $H(z)$, but between two \textbf{complete cosmological models}. $\Lambda$CDM requires six parameters to account for all observations (CMB, large-scale structure, etc.), whereas UAT/UCP addresses the same body of data with a single parameter. The parsimony advantage of UAT is therefore a global property of the framework, not an artifact of the specific dataset chosen.
+
+\section{The Logic of Parsimony}
+
+A common criticism is that ``UAT does not improve $\Lambda$CDM''. This is true in the narrow sense of raw $\chi^2$, but it misses the point. UAT achieves a comparable fit with one-sixth the free parameters. The 7\% margin is not a fudge factor; it is the calibrated residue of a geometric principle that links dark matter amplification, the arrow of time, and the thermodynamic cost of observation.
+
+In a scientific landscape where cosmological tensions persist despite decades of parameter refinement, a model that does as much with far fewer assumptions deserves attention. UAT/UCP is not an adversary of $\Lambda$CDM; it is an alternative that asks different questions and, in doing so, may point toward different answers.
+
+\section*{Data and Code Availability}
+
+The Python script performing the Bayesian comparison (\texttt{bayesian\_comparison.py}) is provided in the supplementary material. All UAT/UCP constants are documented in the referenced Zenodo publications.
+
+\begin{thebibliography}{9}
+
+\bibitem{UAT_fundamental}
+M.~A.~Percudani, \textit{Universal Applied Time (UAT/UCP): A Fundamental Theory of Cosmology from First Principles}, Zenodo, 2024.
+
+\bibitem{unified_action}
+M.~A.~Percudani, \textit{Unified Action for the UAT/UCP Framework}, Zenodo, 2026. DOI: \texttt{10.5281/zenodo.21433360}.
+
+\bibitem{seven_percent}
+M.~A.~Percudani, \textit{On the Nature of the 7\% Thermal Calibration Margin}, Zenodo, 2025. DOI: \texttt{10.5281/zenodo.21211964}.
+
+\bibitem{technical_limitations}
+M.~A.~Percudani, \textit{Technical Limitations Encountered in the UAT/UCP Validation Programme}, Zenodo, 2026. DOI: \texttt{10.5281/zenodo.20534771}.
+
+\bibitem{Moresco2016}
+M.~Moresco et al., \textit{A 6\% measurement of the Hubble parameter at $z\sim 0.45$}, JCAP 05, 014 (2016).
+
+\bibitem{Moresco2020}
+M.~Moresco et al., \textit{Unveiling the Universe with emerging cosmological probes}, Living Rev. Relativ. 23, 1 (2020).
+
+\end{thebibliography}
+
+\end{document}

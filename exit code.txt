@@ -1,0 +1,12 @@
+χ² UAT   = 20.71
+χ² ΛCDM  = 14.90
+
+--- Model Selection (N=31) ---
+UAT:   k=1, χ²/dof=0.6903
+ΛCDM:  k=6, χ²/dof=0.5960
+
+ΔAIC = -4.19
+ΔBIC = -11.36
+log(B) = 5.6815
+Factor de Bayes B = 293.38
+Evidencia (Jeffreys): Decisiva para UAT (B > 100)
